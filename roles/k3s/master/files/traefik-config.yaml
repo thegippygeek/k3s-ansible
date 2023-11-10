@@ -1,0 +1,21 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    additionalArguments:
+    - "--entryPoints.mcjava.address=:25565/tcp"
+    - "--log.level=DEBUG"
+  entryPoints:
+    mcbedrock_udp:
+      address: ':19132/udp'
+    mcbedrock_tcp:
+      address: ':19132'
+    mcbedrock_udpS1:
+      address: ':19134/udp'
+    mcbedrock_tcpS1:
+      address: ':19134'
+    mcjava:
+      address: ':25565/tcp'
