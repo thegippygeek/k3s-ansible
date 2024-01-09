@@ -5,9 +5,28 @@ metadata:
   namespace: kube-system
 spec:
   valuesContent: |-
+    image:
+      name: traefik
+      repository: traefik
+      tag: v3.0
+      # tag: experimental-master
     additionalArguments:
-    - "--entryPoints.mcjava.address=:25565/tcp"
-    - "--log.level=DEBUG"
+      - "--entryPoints.mcjava.address=:25565/tcp"
+      - "--log.level=DEBUG"
+      - "--certificatesresolvers.tail.tailscale=true"
+    providers:
+      kubernetesCRD:
+        allowCrossNamespace: true
+        allowExternalNameServices: true
+      kubernetesIngress:
+        allowExternalNameServices: true
+      # logs:
+      #   general:
+      #     level: DEBUG
+    # certResolvers:
+    #   myresolver: 
+    #     tailscale: {}
+
   entryPoints:
     mcbedrock_udp:
       address: ':19132/udp'

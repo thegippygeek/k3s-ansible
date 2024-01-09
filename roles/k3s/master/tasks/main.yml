@@ -27,6 +27,7 @@
     owner: root
     group: root
     mode: 0644
+    
 
 
 - name: Register node-token file access mode

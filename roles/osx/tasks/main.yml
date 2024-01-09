@@ -1,0 +1,29 @@
+- name: Transfer install setup scripts
+  with_items: "{{ install_scripts }}"
+  copy: src={{ item }} dest=/Users/{{ ansible_user }} mode=0644
+
+- name: Execute Copied Installed Scripts
+  with_items: "{{ install_scripts }}"
+  command: sh /Users/{{ ansible_user }}/{{ item }}
+  register: homebrew_installed
+
+- name: clone Oh My Zsh # noqa: latest
+  ansible.builtin.git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: ~/git/oh-my-zsh
+
+- name: Install Oh My Zsh
+  command: sh /Users/{{ ansible_user }}/git/oh-my-zsh/tools/install.sh
+
+- name: Clone Powerline Fonts # noqa: latest
+  ansible.builtin.git:
+    repo: https://github.com/powerline/fonts.git
+    dest: ~/git/fonts
+    depth: 1
+
+- name: Install Powerline Fonts
+  command: sh /Users/{{ ansible_user }}/git/fonts/install.sh 
+
+- name: Delete git cloned items
+  with_items: ['fonts','oh-my-zsh']
+  command: rm -rf /Users/{{ ansible_user }}/git/{{ item }}

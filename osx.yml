@@ -1,0 +1,15 @@
+- hosts: osx
+  gather_facts: false
+  vars_files: 
+    - inventory/osx/group_vars/config.yml
+  roles:
+    - role: elliotweiser.osx-command-line-tools
+      tags: ['clt'] 
+    - role: osx
+      tags: ['osx']
+    - role: geerlingguy.dotfiles
+      tags: ['dotfiles']
+    - role: geerlingguy.mac.homebrew
+      tags: ['homebrew']
+    - role: geerlingguy.mac.mas
+      tags: ['mas']

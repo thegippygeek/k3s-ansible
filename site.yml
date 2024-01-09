@@ -7,14 +7,19 @@
     - role: prereq
     - role: download
     - role: raspberrypi
-    # - role: update
+    - role: update
+
 
 - hosts: master
   become: yes
   roles:
     - role: k3s/master
+  tags:
+  - master
+  
 
 - hosts: node
   become: yes
   roles:
     - role: k3s/node
+

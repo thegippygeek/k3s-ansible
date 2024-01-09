@@ -1,0 +1,18 @@
+image:
+  name: traefik/traefik
+  tag: 2.10.5
+additionalArguments:
+- "--entryPoints.mcjava.address=:25565/tcp"
+- "--log.level=DEBUG"
+providers:
+  kubernetesCRD:
+    allowCrossNamespace: true
+    allowExternalNameServices: true
+  kubernetesIngress:
+    allowExternalNameServices: true
+  logs:
+    general:
+      level: DEBUG
+  certResolvers:
+    myresolver: 
+      tailscale: {}

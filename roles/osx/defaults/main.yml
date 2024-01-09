@@ -1,0 +1,5 @@
+
+install_scripts: 
+  # - xcode_setup.sh # gets installed with homebrew
+  # - install_homebrew.sh
+  - install_rosetta.sh

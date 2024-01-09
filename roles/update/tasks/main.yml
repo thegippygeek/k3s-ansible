@@ -1,13 +1,16 @@
 ---
 - name: Update apt repo and cache on all Debian/Ubuntu boxes
   apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+  tags: "update"
 
 - name: Upgrade all packages on servers
   apt: upgrade=dist force_apt_get=yes
+  tags: "update"
 
 - name: Check if a reboot is needed on all servers
   register: reboot_required_file
   stat: path=/var/run/reboot-required get_md5=no
+  tags: "update"
 
 - name: Reboot the box if kernel updated
   reboot:
@@ -18,3 +21,4 @@
     post_reboot_delay: 30
     test_command: uptime
   when: reboot_required_file.stat.exists
+  tags: "update"
