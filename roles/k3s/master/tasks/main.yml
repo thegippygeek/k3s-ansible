@@ -20,6 +20,14 @@
   wait_for:
     path: "{{ k3s_server_location }}/server/node-token"
 
+- name: Create Server Manifests Location
+  file:
+    path: "{{ k3s_server_location }}/server/manifests"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
 - name: Copy Helm Chart Traefik Config
   copy:
     src: ../files/traefik-config.yaml
@@ -27,9 +35,15 @@
     owner: root
     group: root
     mode: 0644
+
+- name: Copy Registries.yaml
+  copy:
+    src: ../files/registries.yaml
+    dest: "/etc/rancher/k3s/registries.yaml"
+    owner: root
+    group: root
+    mode: 0644
     
-
-
 - name: Register node-token file access mode
   stat:
     path: "{{ k3s_server_location }}/server/node-token"

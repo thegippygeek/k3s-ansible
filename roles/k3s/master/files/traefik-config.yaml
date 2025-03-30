@@ -12,7 +12,7 @@ spec:
       # tag: experimental-master
     additionalArguments:
       - "--entryPoints.mcjava.address=:25565/tcp"
-      - "--log.level=DEBUG"
+      - "--log.level=INFO"
       - "--certificatesresolvers.tail.tailscale=true"
     providers:
       kubernetesCRD:
@@ -20,12 +20,7 @@ spec:
         allowExternalNameServices: true
       kubernetesIngress:
         allowExternalNameServices: true
-      # logs:
-      #   general:
-      #     level: DEBUG
-    # certResolvers:
-    #   myresolver: 
-    #     tailscale: {}
+    
 
   entryPoints:
     mcbedrock_udp:

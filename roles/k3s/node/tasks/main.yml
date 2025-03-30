@@ -1,4 +1,19 @@
 ---
+- name: Create Server Manifests Location
+  file:
+    path: "/etc/rancher/k3s"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+# roles/k3s/master/files/registries.yaml
+- name: Copy Registries.yaml
+  copy:
+    src: ../../master/files/registries.yaml
+    dest: "/etc/rancher/k3s/registries.yaml"
+    owner: root
+    group: root
+    mode: 0644
 
 - name: Copy K3s service file
   template:

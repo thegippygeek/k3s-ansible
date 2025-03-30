@@ -1,0 +1,19 @@
+mirrors:
+  "registry.unicorn-bee.ts.net":
+    endpoint:
+      - "https://registry.unicorn-bee.ts.net"
+
+# If authentication is required, uncomment and fill in the following section
+# configs:
+#   "registry.unicorn-bee.ts.net":
+#     auth:
+#       username: your-username
+#       password: your-password
+
+# If custom TLS configuration is needed, uncomment and configure
+# tls:
+#   "registry.unicorn-bee.ts.net":
+#     ca_file: /path/to/ca.pem  # Optional: CA certificate
+#     cert_file: /path/to/cert.pem  # Optional: Client certificate
+#     key_file: /path/to/key.pem  # Optional: Client key
+#     insecure_skip_verify: false  # Optional: Set to true to skip TLS verification

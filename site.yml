@@ -1,15 +1,23 @@
 ---
 
 - hosts: k3s_cluster
+  tags:
+    - cluster
   gather_facts: yes
   become: yes
   roles:
+    - role: artis3n.tailscale.device
+      vars:
+        verbose: true
+        tailscale_authkey: "{{ tailscale_auth_key }}"
+        tailscale_tag: 
+          - "k3s"
+          - "k8s"
+        # tailscale_hostname: "{{ ansible_hostname }}"
     - role: prereq
     - role: download
     - role: raspberrypi
     - role: update
-
-
 - hosts: master
   become: yes
   roles:
@@ -22,4 +30,6 @@
   become: yes
   roles:
     - role: k3s/node
+  tags:
+  - node
 
